@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <record id="inventaire_global_view_form" model="ir.ui.view">
+    <field name="name">inventaire.global.view.form</field>
+    <field name="model">inventaire.global.actifs</field>
+    <field name="arch" type="xml">
+      <form string="Inventaire">
+        <header>
+          <button name="action_start" type="object" string="Confirmer"
+            invisible="state in ['in_progress', 'done', 'closed']" />
+          <button name="action_done" type="object" string="Terminé"
+            invisible="state in ['draft', 'closed', 'done']" />
+          <button name="action_closed" type="object" string="Cloturé" invisible="state != 'done' " />
+          <button name="action_reset" type="object" string="Remettre en brouillon"
+            invisible="state in ['closed', 'draft']" />
+          <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,done,closed" />
+        </header>
+        <sheet>
+          <group>
+            <field name="reference" readonly="1" />
+            <field name="begin_date" readonly="state not in ['draft']" />
+            <field name="end_date" readonly="state not in ['draft']" />
+          </group>
+
+          <notebook>
+            <page name="name" string="Sous inventaires">
+              <field name="line_ids">
+                <tree string="name">
+                  <field name="reference" />
+                  <field name="begin_date" />
+                  <field name="end_date" />
+                  <field name="location_id" domain="[('usage', '=', 'internal')]" />
+                  <field name="state" />
+                  <field name="team_id" />
+                </tree>
+              </field>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <record id="inventaire_global_view_tree" model="ir.ui.view">
+    <field name="name">inventaire.global.view.tree</field>
+    <field name="model">inventaire.global.actifs</field>
+    <field name="arch" type="xml">
+      <tree string="">
+        <field name="reference" />
+        <field name="begin_date" />
+        <field name="end_date" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="inventaire_global_view_search" model="ir.ui.view">
+    <field name="name">inventaire.global.view.tree</field>
+    <field name="model">inventaire.global.actifs</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="reference" string="" />
+        <field name="begin_date" />
+        <field name="end_date" />
+      </search>
+    </field>
+  </record>
+
+
+  <record id="inventaire_actifs_action" model="ir.actions.act_window">
+    <field name="name">Inventaire</field>
+    <field name="res_model">inventaire.global.actifs</field>
+    <field name="view_mode">tree,form</field>
+    <field name="search_view_id" ref="sibic_inventaire_actifs.inventaire_global_view_search"></field>
+
+    <field name="help" type="html">
+      <p> Creer un nouveau inventaire
+      </p>
+    </field>
+  </record>
+
+
+  <menuitem
+    id="inventaire_actifs"
+    name="Inventaire"
+    sequence="10"
+    parent="inventaire_actifs_root_menu" />
+
+  <menuitem
+    id="inventaire_menu"
+    name="Inventaire"
+    action="inventaire_actifs_action"
+    parent="inventaire_actifs"
+    sequence="10" />
+</odoo>

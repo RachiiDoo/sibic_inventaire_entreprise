@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <record id="view_product_template_form_inherit" model="ir.ui.view">
+    <field name="name">product.template.form.inherit.actifs</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_form_view" />
+    <field name="arch" type="xml">
+      <xpath expr="//sheet/notebook" position="inside">
+        <page string="Actifs">
+          <field name="asset_ids">
+            <tree string="Actifs liés">
+              <field name="name" />
+              <field name="code" />
+              <field name="acquisition_date" />
+            </tree>
+          </field>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

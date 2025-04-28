@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <record id="view_sous_inventaire_form_inherit" model="ir.ui.view">
+    <field name="name">sibic.sous.inventaire.actifs.form.inherit</field>
+    <field name="model">sibic.sous.inventaire.actifs</field>
+    <field name="inherit_id" ref="sibic_inventaire_actifs.view_sibic_sous_inventaire_actifs_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//form/header" position="inside">
+        <button name="action_voir_resultat"
+          string="Voir résultat"
+          type="object"
+          class="btn btn-primary"
+          modifiers='{"readonly": [["state", "!=", "done"]]}'
+          invisible="state not in ['done', 'closed']"
+        />
+      </xpath>
+      <xpath expr="//page[@name='lines']/field[@name='line_ids']/tree/field[@name='create_uid']"
+        position="before">
+        <field name="asset_id_domain" column_invisible="1" />
+        <field name="asset_id" domain="asset_id_domain" />
+        <field name="asset_code" />
+        <field name="product_id" />
+        <field name="location_id" />
+      </xpath>
+    </field>
+  </record>
+</odoo>

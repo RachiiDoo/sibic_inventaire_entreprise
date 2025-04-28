@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- Vue formulaire pour la popup -->
+  <record id="view_relocate_assets_form" model="ir.ui.view">
+    <field name="name">relocate.assets.form</field>
+    <field name="model">sibic.sous.inventaire.actifs.line</field>
+    <field name="arch" type="xml">
+      <form string="Correction des emplacements" create="false" delete="false">
+        <sheet>
+          <group>
+            <field name="asset_code" readonly="1" />
+            <field name="product_id" readonly="1" />
+            <field name="location_id" modifiers="{}" readonly="0" force_save="1" />
+            <field name="found_location_id" readonly="1" />
+            <field name="has_location_error" readonly="1" optional="hide" />
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action fenêtre pour ouvrir la popup -->
+  <record id="action_relocate_assets_popup" model="ir.actions.act_window">
+    <field name="name">Relocaliser les actifs</field>
+    <field name="res_model">sibic.sous.inventaire.actifs.line</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="view_relocate_assets_form" />
+    <field name="target">new</field>
+    <field name="context">{}</field>
+    <field name="domain">[('id', 'in', active_ids)]</field>
+  </record>
+
+</odoo>

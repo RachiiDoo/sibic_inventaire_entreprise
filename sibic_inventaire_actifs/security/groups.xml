@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <data noupdate="">
+
+    <!-- Group Admin -->
+    <record id="group_inventaire_admin" model="res.groups">
+      <field name="name">Administrateur Inventaire</field>
+      <field name="category_id" ref="base.module_category_inventory" />
+    </record>
+
+    <!-- Group User -->
+    <record id="group_inventaire_user" model="res.groups">
+      <field name="name">Utilisateur Inventaire</field>
+      <field name="category_id" ref="base.module_category_inventory" />
+    </record>
+  </data>
+
+</odoo>

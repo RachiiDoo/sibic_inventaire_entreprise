@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_template,product.template.user,product.model_product_template,base.group_user,1,1,1,1
+access_account_asset,account.asset.user,account_asset.model_account_asset,base.group_user,1,1,1,1
+access_relocate_asset,access.relocate.user,model_relocate_assets_wizard,base.group_user,1,1,1,1

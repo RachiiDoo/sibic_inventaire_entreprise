@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_resultat_inventaire_tree" model="ir.ui.view">
+    <field name="name">resultat.inventaire.line.tree</field>
+    <field name="model">sibic.sous.inventaire.actifs.line</field>
+    <field name="arch" type="xml">
+
+
+      <tree create="false" edit="false" delete="false"
+        decoration-success="has_location_error == False"
+        decoration-danger="has_location_error == True">
+        <field name="asset_code" string="Référence" />
+        <field name="product_id" />
+        <field name="location_id" string="Emplacement Attendu" />
+        <field name="found_location_id" string="Emplacement Trouvé" />
+        <field name="has_location_error" widget="boolean_toggle" string="Erreur d'emplacement"
+          optional="hide"
+        />
+        <field name="sous_inventaire_id" />
+
+
+        <header>
+
+          <!-- Le button Relocaliser -->
+
+          <button
+            string="Relocaliser"
+            type="object"
+            name="action_open_relocate_wizard"
+            class="btn-primary" />
+        </header>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_resultat_inventaire_form" model="ir.ui.view">
+    <field name="name">resultat.inventaire.line.form</field>
+    <field name="model">sibic.sous.inventaire.actifs.line</field>
+    <field name="arch" type="xml">
+      <form create="false" edit="false" delete="false">
+        <group>
+          <field name="asset_code" />
+          <field name="product_id" />
+          <field name="location_id" />
+          <field name="found_location_id" />
+          <field name="has_location_error" />
+          <field name="sous_inventaire_id" />
+        </group>
+      </form>
+    </field>
+  </record>
+
+
+  <record id="view_resultat_inventaire_search" model="ir.ui.view">
+    <field name="name">resultat.inventaire.line.search</field>
+    <field name="model">sibic.sous.inventaire.actifs.line</field>
+    <field name="arch" type="xml">
+      <search>
+        <group>
+          <field name="asset_code" />
+          <field name="product_id" />
+          <field name="location_id" />
+          <field name="found_location_id" />
+          <field name="has_location_error" />
+          <field name="sous_inventaire_id" />
+        </group>
+      </search>
+    </field>
+  </record>
+
+
+  <record id="action_resultats_sous_inventaire" model="ir.actions.act_window">
+    <field name="name">Résultats</field>
+    <field name="res_model">sibic.sous.inventaire.actifs.line</field>
+    <field name="view_mode">tree,form</field>
+    <field name="search_view_id" ref="sibic_assets_product.view_resultat_inventaire_search"></field>
+    <field name="context">{'create': False, 'edit': False, 'delete': False}</field>
+  </record>
+
+
+</odoo>
