@@ -69,7 +69,7 @@
     <field name="name">equipe.inventaire.view.search</field>
     <field name="model">equipe.inventaire</field>
     <field name="arch" type="xml">
-      <search string="">
+      <search>
         <field name="name" />
         <field name="chef_d_equipe" />
       </search>

@@ -55,11 +55,11 @@
   </record>
 
   <record id="inventaire_global_view_search" model="ir.ui.view">
-    <field name="name">inventaire.global.view.tree</field>
+    <field name="name">inventaire.global.view.search</field>
     <field name="model">inventaire.global.actifs</field>
     <field name="arch" type="xml">
       <search>
-        <field name="reference" string="" />
+        <field name="reference" />
         <field name="begin_date" />
         <field name="end_date" />
       </search>
