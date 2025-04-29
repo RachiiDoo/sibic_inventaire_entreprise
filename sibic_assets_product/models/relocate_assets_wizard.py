@@ -20,7 +20,16 @@ class RelocateAssetsWizard(models.TransientModel):
             line.location_id = self.new_location_id
             line._compute_location_error()
 
-        remaining_errors = self.line_ids.filtered(lambda l: l.has_location_error)
+        # Récupérer tous les sous-inventaires concernés
+        sous_invs = self.line_ids.mapped("sous_inventaire_id")
+
+        # Vérifier s'il reste encore des erreurs dans l'ensemble du sous-inventaire
+        remaining_errors = self.env["sibic.sous.inventaire.actifs.line"].search(
+            [
+                ("sous_inventaire_id", "in", sous_invs.ids),
+                ("has_location_error", "=", True),
+            ]
+        )
 
         if not remaining_errors:
             return {

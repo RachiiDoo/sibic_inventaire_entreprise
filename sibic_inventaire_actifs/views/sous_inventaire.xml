@@ -35,7 +35,7 @@
 
           <notebook>
             <page name="lines" string="Lignes">
-              <field name="line_ids" readonly="state in ['draft']">
+              <field name="line_ids" readonly="state not in ['in_progress']">
                 <tree editable="bottom">
                   <field name="create_uid" string="Crée par" />
                   <field name="create_date" string="Crée le" />

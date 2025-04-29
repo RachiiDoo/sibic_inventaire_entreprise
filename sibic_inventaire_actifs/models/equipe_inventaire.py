@@ -12,7 +12,21 @@ class EquipeInventaire(models.Model):
 
     chef_d_equipe = fields.Many2one("res.users", string="Chef d'équipe", required=True)
 
-    membres = fields.Many2many("res.users", string="Membres", required=True)
+    membres = fields.Many2many(
+        "res.users",
+        string="Membres",
+        required=True,
+        domain=lambda self: [
+            (
+                "groups_id",
+                "in",
+                [
+                    self.env.ref("sibic_inventaire_actifs.group_inventaire_admin").id,
+                    self.env.ref("sibic_inventaire_actifs.group_inventaire_user").id,
+                ],
+            )
+        ],
+    )
 
     note = fields.Html(string="Note")  # HTML field for notes
 

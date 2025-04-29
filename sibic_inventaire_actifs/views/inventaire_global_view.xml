@@ -84,6 +84,7 @@
     id="inventaire_actifs"
     name="Inventaire"
     sequence="10"
+    groups="group_inventaire_admin,group_inventaire_user"
     parent="inventaire_actifs_root_menu" />
 
   <menuitem
